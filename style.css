@@ -1,216 +1,258 @@
-*{
-    margin: 0;
-    padding: 0;
+:root {
+  --bgColor: black;
+  --inputBorder: #4a4d57;
+  --accentColor: rgb(176, 43, 43);
+  --textColor: white;
+  --listColor: #1c1d20;
 }
-html{
-    font-size: 16pt;
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-     */
+.darkMode {
+  --bgColor: white;
+  --inputBorder: #666870;
+  --accentColor: rgb(206 36 36);
+  --textColor: black;
+  --listColor: #c3c3c3;
+  /* #a7adc2; */
+}
 
-    font-family: "kanit","IBM Plex Sans",'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
+* {
+  margin: 0;
+  padding: 0;
 }
-body{
-    background-color: black;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    
+html {
+  font-size: 16pt;
+  font-family: "kanit", "IBM Plex Sans", "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
+  color: var(--textColor);
 }
-h1{
-    margin-top: 100px;
-    margin-bottom: 20px;
-    font-size: 3rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    text-align: center;
-    color: rgb(176, 43, 43);
+body {
+  background-color: var(--bgColor);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
 }
-#wrapper{
-    width: 700px;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    /* align-items: center; */
+h1 {
+  margin-top: 100px;
+  margin-bottom: 20px;
+  font-size: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--accentColor);
 }
-form{
-    position: relative;
-    /* display: flex;
+#wrapper {
+  width: 700px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* align-items: center; */
+}
+form {
+  position: relative;
+  /* display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px; */
 }
-#btn{
-    /* width: 500px; */
-    border-radius: 1000px;
-    background-color: rgb(176, 43, 43);
-    color: rgb(36, 33, 6);
-    height: 100%;
-    border: none;
-    font: inherit;
-    font-weight: 1000;
-    
-    cursor: pointer;
-    padding: 0 30px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    
+#btn {
+  /* width: 500px; */
+  border-radius: 1000px;
+  background-color: var(--accentColor);
+  /* color: black; */
+  height: 100%;
+  border: none;
+  font: inherit;
+  font-weight: 1000;
+
+  cursor: pointer;
+  padding: 0 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
-#btn label{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+#btn label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-#btn label svg:hover{
-    scale: 1.1;
+#btn label svg:hover {
+  scale: 1.1;
 }
 
-.todoList{
-    display: flex;
-    /* flex-direction: row; */
-    border-radius: 15px;
-    align-items: center;
-    padding: 0 16px;
-    background-color: #1C1D20;
-    margin-bottom: 10px;
+.todoList {
+  display: flex;
+  /* flex-direction: row; */
+  border-radius: 15px;
+  align-items: center;
+  padding: 0 16px;
+  background-color: var(--listColor);
+  margin-bottom: 10px;
 }
 
-.todoList:hover{
-    scale: 1.01;
+.todoList:hover {
+  scale: 1.01;
 }
-.ItemText{
-    flex-grow: 1;
-    /* color: white; */
-    padding: 15px;
-    padding-right: 0;
-    transition: 200ms ease;
-    
+.ItemText {
+  flex-grow: 1;
+  color: var(--textColor);
+  padding: 15px;
+  padding-right: 0;
+  transition: 200ms ease;
 }
 
 .customCheck {
-    min-height: 20px;
-    min-width: 20px;
-    border: 2px solid rgb(176, 43, 43);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    cursor: pointer;
-    transition: 200ms ease;
-    /* fill: transparent; */
-    /* margin-left: 8px;
-    margin-right: 10px; */
+  min-height: 20px;
+  min-width: 20px;
+  border: 2px solid var(--accentColor);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: 200ms ease;
+  /* fill: transparent; 
+    margin-left: 8px;
+    margin-right: 10px;  */
 }
 
-.customCheck svg{
-    fill:transparent;
+.customCheck svg {
+  fill: transparent;
 }
 input[type="checkbox"]:checked ~ .customCheck {
-    background-color: rgb(176, 43, 43);
-    /* fill: black; */
+  background-color: var(--accentColor);
+  /* fill: black; */
 }
 
-input[type="checkbox"]:checked ~ .customCheck svg{
-    fill: black;
+input[type="checkbox"]:checked ~ .customCheck svg {
+  fill: var(--bgColor);
 }
 
-input[type="checkbox"]{
-    display: none;
+input[type="checkbox"] {
+  display: none;
 }
-input[type="checkbox"]:checked ~.ItemText{
-    text-decoration: line-through;
-    color: rgb(176, 43, 43);
+input[type="checkbox"]:checked ~ .ItemText {
+  text-decoration: line-through;
+  color: var(--inputBorder);
 }
-#todoText{
-    box-sizing: border-box;
-    border-radius: 1000px;
-    padding: 12px 20px;
+#todoText {
+  box-sizing: border-box;
+  border-radius: 1000px;
+  padding: 12px 20px;
+  width: 100%;
+  border: 2px solid var(--inputBorder);
+  /* height: 50px; */
+  caret-color: var(--accentColor);
+  color: var(--textColor);
+  font: inherit;
+  background: none;
+  /* flex-grow: 1; */
+}
+#todoText:focus {
+  outline: none;
+  /* border-color: aqua; */
+}
+
+#deleteBtn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 3px;
+}
+#deleteBtn svg {
+  fill: var(--textColor);
+  transition: 200ms ease;
+}
+#deleteBtn svg:hover {
+  fill: var(--accentColor);
+  scale: 1.15;
+  /* cursor: pointer; */
+}
+#todoText::placeholder {
+  font-style: italic;
+}
+
+#mode {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 17px;
+  margin-right: 20px;
+  display: inline-block;
+  width: 60px;
+  max-width: 100%;
+  height: 34px;
+}
+#mode input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+#slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--accentColor);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+  /* #ccc; */
+}
+#slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: black;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + #slider {
+  background-color: var(--accentColor);
+}
+input:checked + #slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  background-color: white;
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 12pt;
+  }
+  #btn {
+    position: unset;
+    /* margin-left: 25%; */
     width: 100%;
-    border: 2px solid #4A4D57;
-    /* height: 50px; */
-    caret-color: rgb(176, 43, 43);
-    color: white;
-    font: inherit;
-    background: none;
-    /* flex-grow: 1; */
-
-    
-
-}
-#todoText:focus{
-    outline:none;
-    /* border-color: aqua; */
-}
-
-/* .todoList .ItemText{
-padding: 15px;
-    padding-right: 0;
-    flex-grow: 1;
-    
-} */
-/* li{
-    /* padding: 16px 10px;
-    margin: 2px;
-    margin-bottom: 4px;
-    width: 500px;
-    box-sizing: border-box;
-    border-color: grey;
-    border: 2px solid;
-    border-radius: 1000px; */
-
-    /* margin-bottom: 10px;
-    padding: 0 16px;
-    background-color: #1C1D20;
     border-radius: 15px;
-    display: flex;
-    align-items: center;
-} */ 
-
-#deleteBtn{
-    background: none;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding: 3px;
+    margin-top: 10px;
+    padding: 15px;
+    height: auto;
+  }
+  h1 {
+    margin-top: 50px;
+    font-size: 15vw;
+  }
+  #todoText {
+    text-align: center;
+  }
+  #mode {
+    top: unset;
+    bottom: 0;
+    margin-bottom: 17px;
+  }
 }
-#deleteBtn svg{
-    transition: 200ms ease;
-}
-#deleteBtn svg:hover{
-    fill: rgb(176, 43, 43);
-    scale: 1.15;
-    /* cursor: pointer; */
-}
-
-@media(max-width: 500px){
-    html{
-        font-size: 12pt;
-    }
-    #btn{
-        position: unset;
-        /* margin-left: 25%; */
-        width: 100%;
-        border-radius: 15px;
-        margin-top: 10px;
-        padding: 15px;
-        height: auto;
-    }
-    h1{
-        margin-top: 50px;
-        font-size: 15vw;
-    }
-    #todoText{
-        text-align: center;
-    }
-}
-
-

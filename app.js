@@ -1,5 +1,3 @@
-
-
 let todo_ul = document.getElementById("ulList");
 let todo_form = document.querySelector("form");
 let todo_text = document.getElementById("todoText");
@@ -8,45 +6,47 @@ let allTodo = getToDo();
 console.log(allTodo);
 displayToDo();
 
-
-todo_form.addEventListener('submit',function(e){
-    e.preventDefault();
-    
-    addToDo(); 
-    saveToDo();
+const MOD = mode.querySelector("input");
+MOD.addEventListener("change", () => {
+  let element = document.body;
+  element.classList.toggle("darkMode");
 });
 
-function addToDo(){
-    let todo_input = todo_text.value.trim();
-    if(todo_input.length >0){
-        todoObject = {
-            text: todo_input,
-            complete: false
-        }
-        allTodo.push(todoObject);
-        console.log(allTodo);
-        displayToDo(todo_input);
-        saveToDo();
-        todo_text.value = "";
-    }
-    
-    
+todo_form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  addToDo();
+  saveToDo();
+});
+
+function addToDo() {
+  let todo_input = todo_text.value.trim();
+  if (todo_input.length > 0) {
+    todoObject = {
+      text: todo_input,
+      complete: false,
+    };
+    allTodo.push(todoObject);
+    displayToDo(todo_input);
+    saveToDo();
+    todo_text.value = "";
+  }
 }
 
-function displayToDo(){
-    todo_ul.innerHTML = "";
-    allTodo.forEach((todo, todoIndex) => {
-        const todoItem = createToDo(todo,todoIndex);
-        todo_ul.append(todoItem);
-    });
+function displayToDo() {
+  todo_ul.innerHTML = "";
+  allTodo.forEach((todo, todoIndex) => {
+    const todoItem = createToDo(todo, todoIndex);
+    todo_ul.append(todoItem);
+  });
 }
 
-function createToDo(todo,todoIndex){
-    const todoID = "todo-" + todoIndex;
-    const todo_item = document.createElement("li");
-    const todoObj_text = todo.text;
-    todo_item.className = "todoList";
-    todo_item.innerHTML = `
+function createToDo(todo, todoIndex) {
+  const todoID = "todo-" + todoIndex;
+  const todo_item = document.createElement("li");
+  const todoObj_text = todo.text;
+  todo_item.className = "todoList";
+  todo_item.innerHTML = `
         <input id="${todoID}" type="checkbox" />
           <label class="customCheck" for="${todoID}">
             <svg
@@ -73,36 +73,33 @@ function createToDo(todo,todoIndex){
               />
             </svg>
           </button>
-    `
-    const checkbox = todo_item.querySelector("input");
-    checkbox.addEventListener("change", () => {
-        allTodo[todoIndex].complete = checkbox.checked;
-        saveToDo();
-    })
-    checkbox.checked = todo.complete;
-    const deleteButton = todo_item.querySelector("#deleteBtn");
-
-
-    deleteButton.addEventListener('click',() => {
-        deleteToDo(todoIndex);
-    });
-    return todo_item;
-}
-
-function saveToDo(){
-    const todoJson = JSON.stringify(allTodo);
-    localStorage.setItem("todos",todoJson);
-}
-
-
-function getToDo(){
-    const todoGET = localStorage.getItem("todos") || "[]";
-    return JSON.parse(todoGET);
-}
-
-
-function deleteToDo(todoIndex){
-    allTodo = allTodo.filter((_,i) => i != todoIndex);
+    `;
+  const checkbox = todo_item.querySelector("input");
+  checkbox.addEventListener("change", () => {
+    allTodo[todoIndex].complete = checkbox.checked;
     saveToDo();
-    displayToDo();
+  });
+  checkbox.checked = todo.complete;
+  const deleteButton = todo_item.querySelector("#deleteBtn");
+
+  deleteButton.addEventListener("click", () => {
+    deleteToDo(todoIndex);
+  });
+  return todo_item;
+}
+
+function saveToDo() {
+  const todoJson = JSON.stringify(allTodo);
+  localStorage.setItem("todos", todoJson);
+}
+
+function getToDo() {
+  const todoGET = localStorage.getItem("todos") || "[]";
+  return JSON.parse(todoGET);
+}
+
+function deleteToDo(todoIndex) {
+  allTodo = allTodo.filter((_, i) => i != todoIndex);
+  saveToDo();
+  displayToDo();
 }
